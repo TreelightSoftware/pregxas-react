@@ -42,11 +42,7 @@ export class PrayerRequest extends React.Component<IPrayerRequestProps, IPrayerR
     this.toggleReportRequest = this.toggleReportRequest.bind(this);
 
   }
-
-  componentDidMount(){
-    console.log(this.props);
-  }
-
+  
   public render() {
     return (
       <Card title="" loading={this.state.loading} help="">

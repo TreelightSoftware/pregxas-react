@@ -39,6 +39,7 @@ class NavBar extends React.Component<INavProps, INavState> {
     this.toggleHelp = this.toggleHelp.bind(this);
     this.toggleContact = this.toggleContact.bind(this);
   }
+
   public logout() {
     this.props.userActions.logoutUser();
     window.localStorage.clear();

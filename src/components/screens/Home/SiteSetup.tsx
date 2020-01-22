@@ -45,10 +45,6 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
     this.completeSetup = this.completeSetup.bind(this);
   }
 
-  componentDidMount(){
-    console.log(this.state);
-  }
-
   public render() {
     return (
       <Card title="Setup" loading={this.state.loading} help="">
@@ -88,8 +84,8 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
               <input type="text" className="form-control" id="secretKey" value={this.state.secretKey} onChange={this.updateField} />
             </div>
             <div className="form-group">
-              <label>Site Description</label>
-              <textarea className="form-control" id="siteDescription" value={this.state.siteDescription} onChange={this.updateField} />
+              <label>Site Subtitle or Description</label>
+              <input type="text" className="form-control" id="siteDescription" value={this.state.siteDescription} onChange={this.updateField} />
             </div>
           </div>
         </div>
@@ -109,7 +105,6 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
   }
 
   private async completeSetup(){
-    console.log(this.state);
     const firstName = this.state.firstName.trim();
     const lastName = this.state.lastName.trim();
     const email = this.state.email.trim();
@@ -127,7 +122,6 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
     this.setState({ loading: true}, async () => {
       try{
         const result = await SiteAPI.setupSite(firstName, lastName, email, username, password, siteName, siteDescription, secretKey);
-        console.log(result.body);
         if(result.body.data.active){
           // so, grab the data and update the model
           const siteInfoRes = await SiteAPI.getSiteInfo();

@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
 import { SiteAPI } from "../../../api";
-import logo from "../../../img/banner.png";
+import Logo from "../../structure/Logo";
 import * as AppActions from "../../../reducers/appReducer";
 
 import SiteSetup from "./SiteSetup";
@@ -31,8 +31,9 @@ class Home extends React.Component<any, any> {
       <div>
         <div className="row justify-content-center">
           <div className="col-6 col-offset-3" style={{textAlign: "center"}}>
-            <img src={logo} alt="Pregxas Logo" style={{width: "100%"}}/>
-            <h3>United in Prayer</h3>
+            <Logo 
+              showSubtitle={true}
+              />
           </div>
         </div>
         {this.getContents()}

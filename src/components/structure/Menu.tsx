@@ -6,11 +6,11 @@ import { bindActionCreators } from "redux";
 
 import * as AppActions from "../../reducers/appReducer";
 
-import logo from "../../img/banner.png";
+import Logo from "./Logo";
 
 interface IMenuProps {
   appState: any;
-  schoolState: any;
+  userState: any;
   appActions: any;
 }
 
@@ -43,7 +43,9 @@ class Menu extends React.Component<IMenuProps, IMenuState> {
   get header() {
     return (
       <div style={styles.sidebar}>
-        <div style={styles.header}><img src={logo} alt="logo" /></div>
+        <div style={styles.header}>
+          <Logo showSubtitle={false} />
+        </div>
         {this.props.children}
       </div>
     );
@@ -51,7 +53,9 @@ class Menu extends React.Component<IMenuProps, IMenuState> {
   get links() {
     return (
       <div style={styles.sidebar}>
-        <div style={styles.header}><img src={logo} alt="logo" style={{width: "100%"}}/></div>
+        <div style={styles.header}>
+          <Logo showSubtitle={false} />
+        </div>
         <div style={styles.content}>
           <div style={styles.divider} />
 
@@ -59,9 +63,23 @@ class Menu extends React.Component<IMenuProps, IMenuState> {
             <Link to="/me" style={styles.sidebarLink} onClick={this.onTransition} id="menu_dashboard">My Profile</Link>
           <div style={styles.divider} />
 
-          <span style={styles.linkHeader}>Contacts</span>
-            <Link to="/contacts" style={styles.sidebarLink} onClick={this.onTransition} id="menu_dashboard">Contacts</Link>
+          <span style={styles.linkHeader}>Prayer Requests</span>
+            <Link to="/requests" style={styles.sidebarLink} onClick={this.onTransition} id="menu_requests">My Requests</Link>
+            <Link to="/lists" style={styles.sidebarLink} onClick={this.onTransition} id="menu_lists">My Prayer Lists</Link>
+            <Link to="/communities" style={styles.sidebarLink} onClick={this.onTransition} id="menu_communities">My Communities</Link>
           <div style={styles.divider} />
+
+          {this.props.userState && this.props.userState.user && this.props.userState.user.platformRole === "admin" && (
+            <div>
+              <span style={styles.linkHeader}>Administration</span>
+                <Link to="/admin/settings" style={styles.sidebarLink} onClick={this.onTransition} id="menu_admin_settings">Edit Site Settings</Link>
+                <Link to="/admin/reports" style={styles.sidebarLink} onClick={this.onTransition} id="menu_admin_reports">Reported Requests</Link>
+                <Link to="/admin/stats" style={styles.sidebarLink} onClick={this.onTransition} id="menu_admin_stats">Statistics</Link>
+              <div style={styles.divider} />
+            </div>
+          )}
+          
+
         </div>
       </div>
     );
@@ -82,7 +100,7 @@ class Menu extends React.Component<IMenuProps, IMenuState> {
 const mapStateToProps = function map(s: any) {
   return {
     appState: s.appState,
-    schoolState: s.schoolState
+    userState: s.userState
   };
 };
 

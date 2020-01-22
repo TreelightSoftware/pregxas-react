@@ -39,4 +39,12 @@ export class SiteAPI {
     });
   }
 
+  /**
+   * Updates the settings for a site. Since some or all of the data can be sent in, the input is pretty generic.
+   * @param updateData 
+   */
+  public updateSiteInfo(updateData: any = {}): Promise<any> {
+    return makeCall("patch", "admin/site", updateData);
+  }
+
 }

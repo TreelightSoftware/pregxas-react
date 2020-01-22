@@ -11,12 +11,13 @@ import Nav from "./components/structure/Nav";
 // get the screens
 import Home from "./components/screens/Home/Home";
 import { Terms } from "./components/screens/Terms";
-import { About } from "./components/screens/About";
+import About from "./components/screens/About";
 import Login from "./components/screens/Login/Login";
 import Signup from "./components/screens/Login/Signup";
 
-import MyProfile from "./components/screens/Profile/MyProfile";
+import ProfileScreen from "./components/screens/Profile/ProfileScreen";
 
+import SiteSettings from "./components/screens/Home/SiteSettings";
 
 
 class App extends React.Component {
@@ -48,7 +49,9 @@ class App extends React.Component {
                         <Route exact={true} path="/login" component={Login} />
                         <Route exact={true} path="/signup" component={Signup} />
 
-                        <Route exact={true} path="/me" component={MyProfile} />
+                        <Route exact={true} path="/me" component={ProfileScreen} />
+
+                        <Route exact={true} path="/admin/settings" component={SiteSettings} />
 
                       </Switch>
                     </main>

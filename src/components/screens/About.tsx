@@ -1,18 +1,19 @@
 import * as React from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Card from "../structure/Card";
-import logo from "../../img/banner.png";
+import Logo from "../structure/Logo";
 
 interface IAboutProps {
-  appActions: any;
-  history: any;
+  appState: any;
 }
 
 interface IAboutState {
   loading: boolean;
 }
 
-export class About extends React.Component<IAboutProps, IAboutState> {
+class About extends React.Component<IAboutProps, IAboutState> {
 
   constructor(props: any) {
     super(props);
@@ -28,8 +29,10 @@ export class About extends React.Component<IAboutProps, IAboutState> {
       <div id="aboutPage">
         <div className="row justify-content-center">
           <div className="col-6 col-offset-3" style={{ textAlign: "center" }}>
-            <img src={logo} alt="Pregxas Logo" style={{ width: "100%" }} />
-            <h3>United in Prayer</h3>
+            <Logo 
+              showSubtitle={true}
+              subtitleOverride="United in Prayer"
+              />
           </div>
         </div>
         <div className="row justify-content-center">
@@ -57,3 +60,16 @@ export class About extends React.Component<IAboutProps, IAboutState> {
   }
 
 }
+
+const mapStateToProps = function map(s: any) {
+  return {
+    appState: s.appState,
+    userState: s.userState,
+  };
+};
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(About) as any);

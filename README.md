@@ -12,4 +12,4 @@ This application is fairly useless without a running API. You can see the server
 
 ## Status
 
-This project is in an early-access status and should not be used while under active development.
+This project is in an early-access status and should not be used while under active development. It is a work in progress, with many features missing, lack of tests, and inconsistent code styles. Prior to production-ready release, these will be cleaned up. Pull requests welcome!

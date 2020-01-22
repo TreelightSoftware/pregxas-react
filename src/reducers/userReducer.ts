@@ -3,7 +3,7 @@ import { createAction, createReducer } from "redux-act";
 export const loginUser: any = createAction("login");
 export const logoutUser: any = createAction("logout");
 
-export const setSchool: any = createAction("user - change school");
+export const setUser: any = createAction("user - set user");
 
 export interface IUserLoginPayload {
   loggedIn: boolean;
@@ -16,6 +16,12 @@ export default createReducer({
         ...state, 
         loggedIn: payload.loggedIn,
         user: payload.user,
+      };
+    },
+    [setUser]: (state: any, payload: any) => {
+      return {
+        ...state,
+        user: payload,
       };
     },
     [logoutUser]: (state) => {

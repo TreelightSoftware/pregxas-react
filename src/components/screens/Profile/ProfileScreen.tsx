@@ -3,9 +3,10 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { UserAPI } from "../../../api";
 import Card from "../../structure/Card";
 import * as AppActions from "../../../reducers/appReducer";
+
+import EditProfile from "./EditProfile";
 
 interface IMyProfileProps {
   appActions: any;
@@ -24,20 +25,13 @@ class MyProfile extends React.Component<IMyProfileProps, IMyProfileState> {
       loading: false
     };
 
-    this.getMyProfile = this.getMyProfile.bind(this);
-  }
-
-  componentDidMount(){
-    this.getMyProfile();
   }
 
   public render() {
     return (
       <div className="row">
         <div className="col-md-4">
-          <Card title="Profile" loading={this.state.loading} help="">
-            My Profile
-          </Card>
+          <EditProfile />
         </div>
         <div className="col-md-4">
           <Card title="Communities" loading={this.state.loading} help="">
@@ -51,17 +45,6 @@ class MyProfile extends React.Component<IMyProfileProps, IMyProfileState> {
         </div>
       </div>
     );
-  }
-
-  private getMyProfile(){
-    this.setState({loading: true}, async () => {
-      try{
-        const profileResult = await UserAPI.getMyProfile();
-        console.log(profileResult);
-      }catch(e){
-        this.setState({loading: false});
-      }
-    });
   }
 
 }
