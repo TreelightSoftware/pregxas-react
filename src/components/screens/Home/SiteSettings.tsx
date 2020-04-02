@@ -2,6 +2,7 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Helmet } from "react-helmet";
 
 import { SiteAPI } from "../../../api/";
 
@@ -64,6 +65,10 @@ class SiteSettings extends React.Component<ISiteSettingsProps, ISiteSettingsStat
             </div>
           </Card>
         </div>
+
+        <Helmet>
+            <title>{this.state.name}</title>
+          </Helmet>
       </div>
     );
   }

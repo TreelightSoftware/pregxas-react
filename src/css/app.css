@@ -184,6 +184,20 @@ i {
   font-weight: bold;
 }
 
+#communitiesNav {
+  margin: 0;
+  display: table;
+  width: 100%;
+}
+
+#communitiesNav li {
+  display: table-cell;
+  width: 1%;
+  float: none;
+  text-align: center;
+}
+
+
 .btn-primary {
   background-color: #125a91;
 }

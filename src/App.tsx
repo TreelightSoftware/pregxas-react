@@ -2,6 +2,7 @@ import * as React from "react";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import moment from "moment";
 
 import store from "./store";
 
@@ -18,6 +19,8 @@ import Signup from "./components/screens/Login/Signup";
 import ProfileScreen from "./components/screens/Profile/ProfileScreen";
 
 import SiteSettings from "./components/screens/Home/SiteSettings";
+
+import CommunitiesScreen from "./components/screens/Communities/CommunitiesScreen";
 
 
 class App extends React.Component {
@@ -51,6 +54,8 @@ class App extends React.Component {
 
                         <Route exact={true} path="/me" component={ProfileScreen} />
 
+                        <Route exact={true} path="/communities/" component={CommunitiesScreen} />
+
                         <Route exact={true} path="/admin/settings" component={SiteSettings} />
 
                       </Switch>
@@ -61,7 +66,7 @@ class App extends React.Component {
                 <footer>
                   <div className="row" style={{marginTop: 20}}>
                     <div className="col-12" style={{ "textAlign": "center" }}>
-                      <p className="small">Copyright 2010-2019 <a href="https://www.kvsstechnologies.com" target="_new">KVSS Technologies, LLC</a> and <a target="_new" href="https://treelightsoftware.com">Treelight Software Inc</a></p>
+                      <p className="small">Copyright 2010-{moment().format("YYYY")} <a href="https://www.kvsstechnologies.com" target="_new">KVSS Technologies, LLC</a> and <a target="_new" href="https://treelightsoftware.com">Treelight Software Inc</a></p>
                       <p className="small">Use of this application constitutes agreement with our <a href="/terms" target="_new">Terms of Service and Privacy Policy</a></p>
                     </div>
                   </div>

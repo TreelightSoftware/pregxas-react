@@ -45,7 +45,7 @@ class EditProfile extends React.Component<IEditProfileProps, IEditProfileState> 
 
   public render() {
     return (
-      <Card title="EditProfile" loading={this.state.loading} help="">
+      <Card title="Edit Profile" loading={this.state.loading} help="">
         <div className="form-group">
           <label>First Name</label>
           <input type="text" className="form-control" id="firstName" value={this.state.firstName} onChange={this.updateField} />

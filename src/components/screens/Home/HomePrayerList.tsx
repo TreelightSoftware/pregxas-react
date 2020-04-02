@@ -44,6 +44,9 @@ class HomePrayerList extends React.Component<IHomePrayerListProps, IHomePrayerLi
   public render() {
     return (
       <Card title="" loading={this.state.loading} help="">
+        {this.state.requests.length === 0 && (
+          <strong>No prayer requests have been made.</strong>
+        )}
         {this.state.requests.map((request: IPrayerRequest) => {
           return (
             <PrayerRequest 
