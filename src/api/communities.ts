@@ -17,6 +17,22 @@ export interface ICommunity {
   requestCount: number;
 }
 
+export const CommunityBlank: ICommunity = {
+  id: 0,
+  name: "",
+  created: moment(),
+  description: "",
+  privacy: "",
+  shortCode: "",
+  userSignupStatus: "",
+  plan: "",
+  planPaidThrough: moment(),
+  userStatus: "",
+  userRole: "",
+  memberCount: 0,
+  requestCount: 0,
+}
+
 export class CommunitiesAPI {
 
   /**

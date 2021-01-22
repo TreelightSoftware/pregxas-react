@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { PrayerRequestsAPI } from "../../../api";
+import { IPrayerRequest } from "../../../api/requests";
 import Card from "../../structure/Card";
-import { IPrayerRequest, PrayerRequest } from "../PrayerRequests/Request";
+import { PrayerRequest } from "../PrayerRequests/Request";
 import * as AppActions from "../../../reducers/appReducer";
 
 interface IHomePrayerListProps {

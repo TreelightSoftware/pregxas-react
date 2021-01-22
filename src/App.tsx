@@ -21,6 +21,7 @@ import ProfileScreen from "./components/screens/Profile/ProfileScreen";
 import SiteSettings from "./components/screens/Home/SiteSettings";
 
 import CommunitiesScreen from "./components/screens/Communities/CommunitiesScreen";
+import CommunityViewScreen from "./components/screens/Communities/CommunityViewScreen";
 
 
 class App extends React.Component {
@@ -55,6 +56,7 @@ class App extends React.Component {
                         <Route exact={true} path="/me" component={ProfileScreen} />
 
                         <Route exact={true} path="/communities/" component={CommunitiesScreen} />
+                        <Route exact={true} path="/communities/:id" component={CommunityViewScreen} />
 
                         <Route exact={true} path="/admin/settings" component={SiteSettings} />
 

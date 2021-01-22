@@ -12,6 +12,7 @@ import GenericContainer from "../../structure/GenericContainer";
 import { CommunitiesAPI } from "../../../api";
 
 interface IMyCommunitiesListProps {
+  userState: any;
 }
 
 interface IMyCommunitiesListState {
@@ -123,12 +124,14 @@ class MyCommunitiesList extends React.Component<IMyCommunitiesListProps, IMyComm
 
 const mapStateToProps = function map(s: any) {
   return {
-    appState: s.appState
+    userState: s.userState
   };
 };
 
 function mapDispatchToProps(dispatch: any) {
-  return {};
+  return {
+
+  };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyCommunitiesList) as any);

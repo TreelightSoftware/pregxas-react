@@ -15,15 +15,17 @@ export class UserAPI {
    * Signup a new user
    * @param firstName 
    * @param lastName 
+   * @param username
    * @param email 
    * @param password 
    * @param otherData 
    */
-  public signup(firstName: string, lastName: string, email: string, password: string, otherData: any = {}): Promise<any> {
+  public signup(firstName: string, lastName: string, username: string, email: string, password: string, otherData: any = {}): Promise<any> {
     const data = {
       ...otherData,
       firstName,
       lastName,
+      username,
       email,
       password,
     }

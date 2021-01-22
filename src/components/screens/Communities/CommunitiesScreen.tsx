@@ -8,6 +8,7 @@ import NewCommunityScreen from "./NewCommunityScreen";
 
 interface ICommunitiesScreenProps {
   match: any;
+  userState: any;
 }
 
 interface ICommunitiesScreenState {
@@ -21,7 +22,7 @@ class CommunitiesScreen extends React.Component<ICommunitiesScreenProps, ICommun
     super(props);
     this.state = {
       loading: false,
-      view: "mine" // default to public
+      view: "public" // default to public
     };
 
     this.toggleMine = this.toggleMine.bind(this);
@@ -42,16 +43,18 @@ class CommunitiesScreen extends React.Component<ICommunitiesScreenProps, ICommun
   }
 
   public render() {
+    console.log(this.props);
     return (
       <div>
-        <div className="row" style={{marginBottom: 20}}>
-          <div id="communitiesNavbar" className="col-8 offset-2 justify-content-center">
-            <nav className="navbar navbar-expand-lg navbar-light" style={{ borderRadius: "5px"}}>
-              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        {this.props.userState.loggedIn && (
+          <div className="row" style={{marginBottom: 20}}>
+            <div id="communitiesNavbar" className="col-8 offset-2 justify-content-center">
+              <nav className="navbar navbar-expand-lg navbar-light" style={{ borderRadius: "5px"}}>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul id="communitiesNav" className="nav navbar-nav">
                     <li className="nav-item">
                       <button className="btn btn-block btn-link nav-link" style={{ fontWeight: this.state.view === "public" ? "bold" : "normal"}} onClick={this.togglePublic}>Public</button>
-                     </li>
+                    </li>
                     <li className="nav-item">
                       <button className="btn btn-block btn-link nav-link" style={{ fontWeight: this.state.view === "mine" ? "bold" : "normal"}} onClick={this.toggleMine}>Mine</button>
                     </li>
@@ -59,10 +62,11 @@ class CommunitiesScreen extends React.Component<ICommunitiesScreenProps, ICommun
                       <button className="btn btn-block btn-link nav-link" style={{ fontWeight: this.state.view === "create" ? "bold" : "normal"}} onClick={this.toggleCreate}>Create</button>
                     </li>
                   </ul>
-              </div>
-            </nav>
+                </div>
+              </nav>
+            </div>
           </div>
-        </div>
+        )}
         {this.component}
       </div>
     );
@@ -84,7 +88,7 @@ class CommunitiesScreen extends React.Component<ICommunitiesScreenProps, ICommun
 
 const mapStateToProps = function map(s: any) {
   return {
-    appState: s.appState
+    userState: s.userState
   };
 };
 

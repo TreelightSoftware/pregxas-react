@@ -2,6 +2,7 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Helmet } from "react-helmet";
 
 import Card from "../../structure/Card";
 import { error } from "../../structure/Alert";
@@ -94,6 +95,10 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
             <button className="btn btn-block btn-primary" onClick={this.completeSetup}>Complete Setup</button>
           </div>
         </div>
+
+        <Helmet>
+          <title>{this.state.siteName}</title>
+        </Helmet>
       </Card>
     );
   }

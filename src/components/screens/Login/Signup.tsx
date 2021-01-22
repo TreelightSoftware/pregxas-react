@@ -28,6 +28,7 @@ class Signup extends React.Component<ISignupScreenProps, any> {
       step: 1,
       email: "",
       password: "",
+      username: "",
       firstName: "",
       lastName: "",
       loading: false,
@@ -36,26 +37,6 @@ class Signup extends React.Component<ISignupScreenProps, any> {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateField = this.updateField.bind(this);
     this.checkEnter = this.checkEnter.bind(this);
-  }
-
-  public async handleSubmit() {
-    const firstName = this.state.firstName;
-    const lastName = this.state.lastName;
-    const email = this.state.email;
-    const password = this.state.password;
-    if (firstName === "" || lastName === "" || email === "" || password === "") {
-      return error("All fields are required!")
-    }
-    this.setState({ loading: true }, async () => {
-      try {
-        await UserAPI.signup(firstName, lastName, email, password);
-        this.setState({ loading: false, step: 2 });
-
-      } catch (e) {
-        error("Could not log you in.");
-        this.setState({ loading: false });
-      }
-    });
   }
 
   public render() {
@@ -94,6 +75,10 @@ class Signup extends React.Component<ISignupScreenProps, any> {
                   <div className="form-group">
                     <label>Last Name</label>
                     <input type="text" id="lastName" className="form-control" value={this.state.lastName} onChange={this.updateField} onKeyUp={this.checkEnter} />
+                  </div>
+                  <div className="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" className="form-control" value={this.state.username} onChange={this.updateField} onKeyUp={this.checkEnter} />
                   </div>
                   <div className="form-group">
                     <label>Email</label>
@@ -142,6 +127,27 @@ class Signup extends React.Component<ISignupScreenProps, any> {
     if (e.keyCode === 13) {
       this.handleSubmit();
     }
+  }
+
+  private async handleSubmit() {
+    const firstName = this.state.firstName;
+    const lastName = this.state.lastName;
+    const email = this.state.email;
+    const password = this.state.password;
+    const username = this.state.username;
+    if (firstName === "" || lastName === "" || email === "" || password === "" || username === "") {
+      return error("All fields are required!")
+    }
+    this.setState({ loading: true }, async () => {
+      try {
+        await UserAPI.signup(firstName, lastName, username, email, password);
+        this.setState({ loading: false, step: 2 });
+
+      } catch (e) {
+        error("Could not sign you up. They username or password may already exist.");
+        this.setState({ loading: false });
+      }
+    });
   }
 }
 
