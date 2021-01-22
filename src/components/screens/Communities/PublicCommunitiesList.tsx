@@ -68,7 +68,6 @@ class PublicCommunitiesList extends React.Component<IPublicCommunitiesListProps,
     this.setState({ loading: false }, async () => {
       try {
         const result = await CommunitiesAPI.getPublicCommunities(this.state.sortField, this.state.sortDir, this.state.count, this.state.offset);
-        console.log(result);
         this.setState({ loading: false, communities: result.body.data });
       } catch (err) {
         // nothing to do really

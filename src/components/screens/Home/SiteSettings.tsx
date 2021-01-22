@@ -25,7 +25,7 @@ interface ISiteSettingsState {
 
 class SiteSettings extends React.Component<ISiteSettingsProps, ISiteSettingsState> {
 
-  constructor(props: any){
+  constructor(props: any) {
     super(props);
     this.state = {
       loading: false,
@@ -39,7 +39,7 @@ class SiteSettings extends React.Component<ISiteSettingsProps, ISiteSettingsStat
     this.saveSiteSettings = this.saveSiteSettings.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchSiteSettings();
   }
 
@@ -67,21 +67,21 @@ class SiteSettings extends React.Component<ISiteSettingsProps, ISiteSettingsStat
         </div>
 
         <Helmet>
-            <title>{this.state.name}</title>
-          </Helmet>
+          <title>{this.state.name}</title>
+        </Helmet>
       </div>
     );
   }
 
-  private updateField(e: any){
+  private updateField(e: any) {
     const ns = this.state;
     ns[e.target.id] = e.target.value;
     this.setState(ns);
   }
 
-  private fetchSiteSettings(){
+  private fetchSiteSettings() {
     this.setState({ loading: true }, async () => {
-      try{
+      try {
         const res = await SiteAPI.getSiteInfo();
         this.props.appActions.setSiteInfo(res.body.data);
         this.setState({
@@ -90,29 +90,29 @@ class SiteSettings extends React.Component<ISiteSettingsProps, ISiteSettingsStat
           description: res.body.data.description,
           logoLocation: res.body.data.logoLocation,
         });
-      }catch(err){
+      } catch (err) {
         error("Could not load the site settings.");
         this.setState({ loading: false });
       }
     });
   }
 
-  private saveSiteSettings(){
+  private saveSiteSettings() {
     const data = {
       name: this.state.name,
       description: this.state.description,
       logoLocation: this.state.logoLocation,
     }
-    if(data.name.trim() === "" || data.description.trim() === ""){
+    if (data.name.trim() === "" || data.description.trim() === "") {
       return error("Name and subtitle / description are required");
     }
     this.setState({ loading: true }, async () => {
-      try{
+      try {
         const result = await SiteAPI.updateSiteInfo(data);
         success("Saved!");
         this.props.appActions.setSiteInfo(result.body.data);
         this.setState({ loading: false });
-      }catch(err){
+      } catch (err) {
         error("Could not save the site settings.");
         this.setState({ loading: false });
       }

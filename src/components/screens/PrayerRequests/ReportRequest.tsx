@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 
 import {success, error} from "../../structure/Alert";
 
-import { IPrayerRequest } from "./Request";
+import { IPrayerRequest } from "../../../api/requests";
 import { PrayerRequestsAPI } from "../../../api";
 
 interface IReportRequestProps {

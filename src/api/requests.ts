@@ -1,4 +1,31 @@
 import { makeCall } from "./client";
+import moment from "moment";
+
+export interface IPrayerRequest {
+  id: number;
+  title: string;
+  body: string;
+  createdBy: number;
+  privacy: "public" | "private";
+  created: string;
+  status: "pending" | "answered" | "not_answered" | "unknown";
+  tags: any;
+  prayerCount: number;
+  username: string;
+};
+
+export const PrayerRequestBlank: IPrayerRequest = {
+  id: 0,
+  title: "",
+  body: "",
+  createdBy: 0,
+  privacy: "public",
+  created: moment().format("YYYY-MM-DDTHH:mm:SSZ"),
+  status: "pending",
+  tags: [],
+  prayerCount: 0,
+  username: "",
+};
 
 export class PrayerRequestsAPI {
 
@@ -7,6 +34,19 @@ export class PrayerRequestsAPI {
    */
   public getGlobalList(count: number = 10, offset: number = 0): Promise<any> {
     return makeCall("get", "requests", {
+      count,
+      offset,
+    });
+  }
+
+  /**
+   * Get the list of requests for a single community, defaulting to loading the first 10
+   * @param communityId 
+   * @param count 
+   * @param offset 
+   */
+  public getListForCommunity(communityId: number, count: number = 10, offset: number = 0): Promise<any> {
+    return makeCall("get", `communities/${communityId}/requests`, {
       count,
       offset,
     });

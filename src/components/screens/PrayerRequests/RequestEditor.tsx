@@ -1,39 +1,57 @@
 import * as React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 
-import Card from "../../structure/Card";
 import flag from "../../../img/flag_blue.png";
-import { IPrayerRequest } from "../../../api/requests";
+import { IPrayerRequest, PrayerRequestBlank } from "../../../api/requests";
 
 import { ReportRequest } from "./ReportRequest";
 
 interface IPrayerRequestProps {
   request: IPrayerRequest;
   loggedInUser: any;
+  show?: boolean;
+  onClose?: any;
+  onSubmit?: any;
+  mode: "edit" | "view";
+  view: "modal" | "card"
 }
 
 interface IPrayerRequestState {
   loading: boolean;
   showReportRequestModal: boolean;
+  request: IPrayerRequest;
 }
 
-export class PrayerRequest extends React.Component<IPrayerRequestProps, IPrayerRequestState> {
+export class PrayerRequestEditor extends React.Component<IPrayerRequestProps, IPrayerRequestState> {
 
   constructor(props: any){
     super(props);
     this.state = {
       loading: false,
       showReportRequestModal: false,
+      request: PrayerRequestBlank,
     };
 
     this.toggleReportRequest = this.toggleReportRequest.bind(this);
 
   }
+
+  componentDidMount(){
+    this.setState({
+      request: this.props.request,
+      loading: false,
+    });
+  }
   
   public render() {
     return (
-      <Card title="" loading={this.state.loading} help="">
+    <Modal show={this.props.show} onHide={this.props.onClose} size="xl">
+      <Modal.Header closeButton={true}>
+        <Modal.Title>Prayer Request</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <div className="row">
           <div className="col-10">
             <h2>{this.props.request.title}</h2>
@@ -54,7 +72,7 @@ export class PrayerRequest extends React.Component<IPrayerRequestProps, IPrayerR
             This prayer is {this.parseStatus(this.props.request.status)}
           </div>
           <div className="col-2">
-            <Link to={`/requests/${this.props.request.id}`}>Read More >></Link>
+            <Link to={`/requests/${this.props.request.id}`}>Read More</Link>
           </div>
         </div>
         <div className="row">
@@ -69,7 +87,8 @@ export class PrayerRequest extends React.Component<IPrayerRequestProps, IPrayerR
           onClose={this.toggleReportRequest}
           onSubmit={this.toggleReportRequest}
         />
-      </Card>
+      </Modal.Body>
+    </Modal>
     );
   }
 
