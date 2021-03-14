@@ -226,3 +226,9 @@ i {
 .cursor-link{
   cursor: pointer;
 }
+
+.card-header {
+  background-color: #125a91;
+  color: white;
+  font-weight: bold;
+}

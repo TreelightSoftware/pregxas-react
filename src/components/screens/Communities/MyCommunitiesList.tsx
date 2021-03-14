@@ -94,7 +94,6 @@ class MyCommunitiesList extends React.Component<IMyCommunitiesListProps, IMyComm
     this.setState({ loading: false }, async () => {
       try {
         const result = await CommunitiesAPI.getMyCommunities();
-        console.log(result);
         this.setState({ communities: result.body.data}, () => {
           this.filterCommunities();
         });

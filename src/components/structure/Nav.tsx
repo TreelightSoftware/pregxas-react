@@ -2,13 +2,14 @@ import * as React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+import { UserAPI } from "src/api";
 
 import Contact from "./Contact";
 
-import * as AppActions from "../../reducers/appReducer";
-import * as UserActions from "../../reducers/userReducer";
+import * as AppActions from "src/reducers/appReducer";
+import * as UserActions from "src/reducers/userReducer";
 
-import logo from "../../img/icon.png";
+import logo from "src/img/icon.png";
 
 interface INavProps {
   appActions: any;
@@ -40,9 +41,15 @@ class NavBar extends React.Component<INavProps, INavState> {
     this.toggleContact = this.toggleContact.bind(this);
   }
 
-  public logout() {
+  public async logout() {
+    await UserAPI.logoutUser();
     this.props.userActions.logoutUser();
     window.localStorage.clear();
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
     this.props.history.push("/login");
   }
 

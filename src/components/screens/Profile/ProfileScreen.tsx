@@ -3,8 +3,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import Card from "../../structure/Card";
-import * as AppActions from "../../../reducers/appReducer";
+import Card from "src/components/structure/Card";
+import Screen from "src/components/structure/Screen";
+import * as AppActions from "src/reducers/appReducer";
 
 import EditProfile from "./EditProfile";
 
@@ -29,21 +30,23 @@ class MyProfile extends React.Component<IMyProfileProps, IMyProfileState> {
 
   public render() {
     return (
-      <div className="row">
-        <div className="col-md-4">
-          <EditProfile />
+      <Screen refreshToken={true} fileName="Profile/ProfileScreen.tsx">
+        <div className="row">
+          <div className="col-md-4">
+            <EditProfile />
+          </div>
+          <div className="col-md-4">
+            <Card title="Communities" loading={this.state.loading} help="">
+              My Communities
+            </Card>
+          </div>
+          <div className="col-md-4">
+            <Card title="Prayer Lists" loading={this.state.loading} help="">
+              My Prayer Lists
+            </Card>
+          </div>
         </div>
-        <div className="col-md-4">
-          <Card title="Communities" loading={this.state.loading} help="">
-            My Communities
-          </Card>
-        </div>
-        <div className="col-md-4">
-          <Card title="Prayer Lists" loading={this.state.loading} help="">
-            My Prayer Lists
-          </Card>
-        </div>
-      </div>
+      </Screen>
     );
   }
 

@@ -42,9 +42,10 @@ class Login extends React.Component<ILoginScreenProps, any> {
         const result = await UserAPI.loginUser(this.state.email, this.state.password);
         const user = result.body.data;
 
-        window.localStorage.jwt = user.jwt;
+        user.jwt = "";
+        user.access_token = "";
+        user.refresh_token = "";
         window.localStorage.user = JSON.stringify(user);
-        document.cookie = "jwt=" + user.jwt;
 
         // set the action
         this.props.userActions.loginUser({loggedIn: true, user});

@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Helmet } from "react-helmet";
 
 import Card from "../../structure/Card";
-import { error } from "../../structure/Alert";
+import { error, success } from "../../structure/Alert";
 import { SiteAPI } from "../../../api";
 import * as AppActions from "../../../reducers/appReducer";
 
@@ -131,7 +131,9 @@ class SiteSetup extends React.Component<ISiteSetupProps, ISiteSetupState> {
           // so, grab the data and update the model
           const siteInfoRes = await SiteAPI.getSiteInfo();
           const siteInfo = siteInfoRes.body.data;
+          success("Site has been activated! Please login to continue.");
           this.props.appActions.setSiteInfo(siteInfo);
+          this.props.history.push("/login");
         }
       }catch(e){
         this.setState({loading: false}, () => {

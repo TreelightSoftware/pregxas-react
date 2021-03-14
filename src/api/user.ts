@@ -12,6 +12,22 @@ export class UserAPI {
   }
 
   /**
+   * Refresh an access token, receiving it as an httpOnly cookie
+   * @returns 
+   */
+  public refreshToken(): Promise<any> {
+    return makeCall("post", "users/refresh", {});
+  }
+
+  /**
+   * Logout a user and wipe the httpOnly cookies
+   * @returns 
+   */
+  public logoutUser(): Promise<any> {
+    return makeCall("post", "users/logout", {});
+  }
+
+  /**
    * Signup a new user
    * @param firstName 
    * @param lastName 
