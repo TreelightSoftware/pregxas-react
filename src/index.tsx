@@ -9,12 +9,11 @@ import * as Sentry from "@sentry/browser";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
 import "../node_modules/react-redux-toastr/lib/css/react-redux-toastr.min.css";
-import "./css/open-iconic-bootstrap.min.css";
 import "./css/app.css";
 
 if(process.env.REACT_APP_SENTRY_DSN){
   Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN// "https://f1833ae37a6242b1a3259ef3bb0534c8@sentry.io/1419296",
+    dsn: process.env.REACT_APP_SENTRY_DSN
   });
 }
 

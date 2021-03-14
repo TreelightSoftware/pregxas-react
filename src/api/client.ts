@@ -18,22 +18,12 @@ export function makeCall(method: string, endpoint: string, data: any = {}, optio
     method: meth,
     url,
     timeout: 15000,
-    headers: {
-      jwt: ""
-    },
+    headers: {},
     params: {},
     data: {},
     withCredentials: true
   };
 
-  if(data && !data.jwt && window.localStorage.jwt){
-    config.headers.jwt = window.localStorage.jwt;
-    delete(data.jwt);
-  } else if(data && data.jwt){
-    config.headers.jwt = data.jwt;
-    delete(data.jwt);
-  }
-  
   if(options.asMultipartFile){
     const formData = new FormData();
     formData.append("file", data);

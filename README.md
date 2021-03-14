@@ -1,6 +1,6 @@
 # Pregxas React App
 
-Pregxas is an open-source community-based prayer management system. There is the main Pregxas application, hosted by Treelight Software, but you are free to take the server and applications (or build your own clients!) and use it to keep track of prayer plans, prayer requests, and more for your group, regardless of faith or background. The application assumes it is the host with smaller communities within the site. If you don't want to host your own server, you may signup for a free or paid hosted version with us!
+Pregxas is an open-source community-based prayer management system. There is the main Pregxas application, hosted by Treelight Software, but you are free to take the server and applications (or build your own clients!) and use it to keep track of prayer plans, prayer requests, and more for your group, regardless of faith or background, as long as you rofllow the terms in the LICENSE.md file. The application assumes it is the host with smaller communities within the site. If you don't want to host your own server, you may signup for a free or paid hosted version with us!
 
 *What does pregxas mean?*
 

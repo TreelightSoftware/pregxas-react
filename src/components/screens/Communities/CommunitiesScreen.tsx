@@ -43,7 +43,6 @@ class CommunitiesScreen extends React.Component<ICommunitiesScreenProps, ICommun
   }
 
   public render() {
-    console.log(this.props);
     return (
       <div>
         {this.props.userState.loggedIn && (
